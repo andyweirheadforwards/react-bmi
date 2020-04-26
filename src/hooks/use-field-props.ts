@@ -1,10 +1,10 @@
 import { TextFieldProps } from '@material-ui/core';
 import { ChangeEventHandler, FocusEventHandler, ReactNode, useState } from 'react';
 
-import { FieldSettings } from '../pages/bmi-calculator/form-schema';
+import { AwFieldSettings } from '../pages/bmi-calculator/form-schema';
 
 const useFieldProps = (
-  fieldSettings: FieldSettings,
+  fieldSettings: AwFieldSettings,
   value: string | null,
   onValueChange: (field: string, value: string) => void
 ): TextFieldProps => {
@@ -13,7 +13,7 @@ const useFieldProps = (
   const [errorMessage, setErrorMessage] = useState<ReactNode | null>(null);
   const error = !!errorMessage;
   const onChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value: changeValue } }) =>
-    onValueChange(name || '', changeValue);
+    onValueChange(name, changeValue);
   const onBlur: FocusEventHandler<HTMLInputElement> = ({ target: { value: blurValue } }) =>
     setErrorMessage(getErrorMessage(blurValue));
 

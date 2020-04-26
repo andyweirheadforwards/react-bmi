@@ -7,14 +7,14 @@ const maxHeight = 300;
 const minWeight = 5;
 const maxWeight = 600;
 
-export type FieldSettings = {
-  field: TextFieldProps;
+export type AwFieldSettings = {
+  field: { name: string } & TextFieldProps;
   helperText: string;
   getErrorMessage: (value: string) => ReactNode | null;
 };
 
 export type FormSchema = {
-  [field: string]: FieldSettings;
+  [field: string]: AwFieldSettings;
 };
 
 export type FormData = {
