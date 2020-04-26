@@ -1,21 +1,11 @@
 import './scss/main.scss';
 
-import { AppBar, Container, createMuiTheme, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Container, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles, ThemeProvider } from '@material-ui/styles';
 import React, { FC } from 'react';
 
 import BmiCalculatorPage from './pages/bmi-calculator/BmiCalculatorPage';
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#9c27b0',
-    },
-    secondary: {
-      main: '#e91e63',
-    },
-  },
-});
+import theme from './theme';
 
 const App: FC = () => {
   const { offset } = makeStyles(() => ({ offset: theme.mixins.toolbar }))();
