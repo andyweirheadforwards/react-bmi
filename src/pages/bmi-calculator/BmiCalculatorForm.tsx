@@ -1,15 +1,8 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  InputAdornment,
-  OutlinedTextFieldProps,
-  TextField,
-} from '@material-ui/core';
+import { InputAdornment, OutlinedTextFieldProps } from '@material-ui/core';
 import React, { FC, FormEventHandler, useCallback, useState } from 'react';
 
+import RbcFormCard, { RbcFormCardProps } from '../../components/forms/rbc-form-card';
+import RbcTextField from '../../components/forms/rbc-text-field';
 import Loading from '../../components/loading/Loading';
 import useFieldProps from '../../hooks/use-field-props';
 import useForm from '../../hooks/use-form';
@@ -29,12 +22,8 @@ const BmiCalculatorForm: FC = () => {
 
   const { height, weight } = formData;
 
-  const heightProps = useFieldProps(heightSchema, height, setField);
-  const weightProps = useFieldProps(weightSchema, weight, setField);
-
-  const isValid = isFormValid(schema, formData);
-
-  const buttonDisabled = !isValid || isLoading;
+  const heightProps = useFieldProps(heightSchema, height, setField) as OutlinedTextFieldProps;
+  const weightProps = useFieldProps(weightSchema, weight, setField) as OutlinedTextFieldProps;
 
   const handleResponse = useCallback(({ bmi }) => alert(`Your BMI is: ${bmi}`), []);
   const handleError = useCallback(error => alert(error), []);
@@ -52,39 +41,30 @@ const BmiCalculatorForm: FC = () => {
     [formData, setLoading, setFormData, handleResponse, handleError]
   );
 
+  const formCardProps: RbcFormCardProps = {
+    title: 'BMI Calculator',
+    submitLabel: 'Get BMI',
+    onSubmit: handleSubmit,
+    canSubmit: isFormValid(schema, formData) && !isLoading,
+  };
+
   return (
     <>
       {isLoading && <Loading />}
-      <Card>
-        <CardHeader title="BMI Calculator" />
-        <form onSubmit={handleSubmit}>
-          <CardContent>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              InputProps={{
-                endAdornment: <InputAdornment position="end">cm</InputAdornment>,
-              }}
-              {...(heightProps as OutlinedTextFieldProps)}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              InputProps={{
-                endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
-              }}
-              {...(weightProps as OutlinedTextFieldProps)}
-            />
-          </CardContent>
-          <CardActions>
-            <Button type="submit" color="primary" fullWidth disabled={buttonDisabled}>
-              Get BMI
-            </Button>
-          </CardActions>
-        </form>
-      </Card>
+      <RbcFormCard {...formCardProps}>
+        <RbcTextField
+          InputProps={{
+            endAdornment: <InputAdornment position="end">cm</InputAdornment>,
+          }}
+          {...heightProps}
+        />
+        <RbcTextField
+          InputProps={{
+            endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
+          }}
+          {...weightProps}
+        />
+      </RbcFormCard>
     </>
   );
 };
