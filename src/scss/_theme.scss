@@ -1,0 +1,29 @@
+$primary-colour: orange;
+$secondary-colour: blue;
+$ink: #666666;
+$chalk: #eeeeee;
+
+$fonts: (
+  sizes: (
+    base: 18px,
+  ),
+  colours: (
+    primary: $primary-colour,
+    secondary: $secondary-colour,
+  ),
+);
+$colours: (
+  primary: (
+    colour: $primary-colour,
+    text: $ink,
+  ),
+  secondary: (
+    colour: $secondary-colour,
+    text: $chalk,
+  ),
+);
+$margins: (
+  small: 8px,
+  medium: 16px,
+  large: 24px,
+);
