@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { FormData } from '../pages/bmi-calculator/form-schema';
+import { RbcFormData } from '../pages/bmi-calculator/form-schema';
 
-const useForm = (defaultData: FormData) => {
-  const [formData, setFormData] = useState<FormData>(defaultData);
+const useForm = (defaultData: RbcFormData) => {
+  const [formData, setFormData] = useState<RbcFormData>(defaultData);
 
   const setField = (field: string, value: string): void =>
     setFormData({

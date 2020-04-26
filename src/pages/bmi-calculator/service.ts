@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-import { BmiFormData } from './form-schema';
+import { RbcBmiFormData } from './form-schema';
 
-export interface BmiPostData {
+export interface RbcBmiPostData {
   height: number;
   weight: number;
 }
 
-export function getBmi(formData: BmiFormData, setLoading: (loading: boolean) => void) {
+export function getBmi(formData: RbcBmiFormData, setLoading: (loading: boolean) => void) {
   const postData = getPostData(formData);
 
   setLoading(true);
@@ -18,7 +18,7 @@ export function getBmi(formData: BmiFormData, setLoading: (loading: boolean) => 
     .finally(() => setLoading(false));
 }
 
-export function getPostData({ height, weight }: BmiFormData): BmiPostData {
+export function getPostData({ height, weight }: RbcBmiFormData): RbcBmiPostData {
   return {
     height: parseFloat(height || '') / 100,
     weight: parseFloat(weight || ''),

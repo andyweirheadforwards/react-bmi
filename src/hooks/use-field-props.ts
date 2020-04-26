@@ -1,10 +1,10 @@
 import { TextFieldProps } from '@material-ui/core';
 import { ChangeEventHandler, FocusEventHandler, ReactNode, useState } from 'react';
 
-import { AwFieldSettings } from '../pages/bmi-calculator/form-schema';
+import { RbcFieldSettings } from '../pages/bmi-calculator/form-schema';
 
 const useFieldProps = (
-  fieldSettings: AwFieldSettings,
+  fieldSettings: RbcFieldSettings,
   value: string | null,
   onValueChange: (field: string, value: string) => void
 ): TextFieldProps => {

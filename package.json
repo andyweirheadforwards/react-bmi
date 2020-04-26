@@ -1,89 +1,109 @@
 {
-  "name": "height-weight-poc",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "build": "react-scripts build",
-    "cosmos": "cosmos",
-    "dev": "concurrently --kill-others-on-fail \"nodemon server.js\" \"yarn start\"",
-    "eject": "react-scripts eject",
-    "format": "prettier --write 'src/**/*.{js,ts,jsx,tsx}'",
-    "lint": "run-p lint:**",
-    "lint:javascript": "eslint --color --fix 'src/**/*.{js,ts,jsx,tsx}'",
-    "lint:others": "prettier --write --loglevel warn '**/*.{json,md,yml}'",
-    "lint:styles": "stylelint --fix '**/*.{css,scss}'",
-    "start": "react-scripts start",
-    "test": "react-scripts test",
-    "tidy": "yarn format && yarn lint"
-  },
-  "dependencies": {
-    "@material-ui/core": "^4.9.11",
-    "@material-ui/styles": "^4.9.10",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/axios": "^0.14.0",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "add": "^2.0.6",
-    "axios": "^0.19.2",
-    "normalize.css": "^8.0.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "typeface-roboto": "^0.0.75",
-    "typescript": "~3.7.2",
-    "yarn": "^1.22.4"
-  },
-  "devDependencies": {
-    "@testing-library/dom": "^7.2.2",
-    "@types/faker": "^4.1.11",
-    "@typescript-eslint/eslint-plugin": "^2.29.0",
-    "@typescript-eslint/parser": "^2.29.0",
-    "concurrently": "^5.2.0",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-typescript": "^7.2.1",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-config-react-app": "^5.2.1",
-    "eslint-plugin-eslint-comments": "^3.1.2",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jest": "^23.8.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^3.1.3",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^3.0.0",
-    "eslint-plugin-simple-import-sort": "^5.0.2",
-    "express": "^4.17.1",
-    "faker": "^4.1.0",
-    "nodemon": "^2.0.3",
-    "npm-run-all": "^4.1.5",
-    "pre-commit": "^1.2.2",
-    "prettier": "^2.0.5",
-    "prettier-plugin-package": "^1.0.0",
-    "react-cosmos": "^5.1.0",
-    "stylelint": "^13.3.3",
-    "stylelint-config-prettier": "^8.0.1",
-    "stylelint-config-recommended": "^3.0.0",
-    "stylelint-prettier": "^1.1.2",
-    "typescript-plugin-css-modules": "^2.2.0"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+    "name": "height-weight-poc",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "build": "react-scripts build",
+        "cosmos": "cosmos",
+        "dev": "concurrently --kill-others-on-fail \"nodemon server.js\" \"yarn start\"",
+        "eject": "react-scripts eject",
+        "format": "prettier --write 'src/**/*.{js,ts,jsx,tsx}'",
+        "lint": "run-p lint:**",
+        "lint:javascript": "eslint --color --fix 'src/**/*.{js,ts,jsx,tsx}'",
+        "lint:others": "prettier --write --loglevel warn '**/*.{json,md,yml}'",
+        "lint:styles": "stylelint --fix '**/*.{css,scss}'",
+        "report:eslint": "eslint --color --fix -f json -o reports/eslint.json 'src/**/*.{js,ts,jsx,tsx}'",
+        "start": "react-scripts start",
+        "test": "react-scripts test",
+        "tidy": "yarn format && yarn lint",
+        "coverage": "react-scripts test --coverage --watchAll=false --passWithNoTests; mv ./coverage ./reports/",
+        "sonar": "yarn report:eslint; yarn coverage; sonar-scanner"
+    },
+    "dependencies": {
+        "@material-ui/core": "^4.9.11",
+        "@material-ui/styles": "^4.9.10",
+        "@testing-library/jest-dom": "^4.2.4",
+        "@testing-library/react": "^9.3.2",
+        "@testing-library/user-event": "^7.1.2",
+        "@types/axios": "^0.14.0",
+        "@types/jest": "^24.0.0",
+        "@types/node": "^12.0.0",
+        "@types/react": "^16.9.0",
+        "@types/react-dom": "^16.9.0",
+        "add": "^2.0.6",
+        "axios": "^0.19.2",
+        "normalize.css": "^8.0.1",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-scripts": "3.4.1",
+        "typeface-roboto": "^0.0.75",
+        "typescript": "~3.7.2",
+        "yarn": "^1.22.4"
+    },
+    "devDependencies": {
+        "@testing-library/dom": "^7.2.2",
+        "@types/faker": "^4.1.11",
+        "@typescript-eslint/eslint-plugin": "^2.29.0",
+        "@typescript-eslint/parser": "^2.29.0",
+        "concurrently": "^5.2.0",
+        "enzyme": "^3.11.0",
+        "enzyme-adapter-react-16": "^1.15.2",
+        "enzyme-to-json": "^3.4.4",
+        "eslint": "^6.8.0",
+        "eslint-config-airbnb-typescript": "^7.2.1",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-config-react-app": "^5.2.1",
+        "eslint-plugin-eslint-comments": "^3.1.2",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-jest": "^23.8.2",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
+        "eslint-plugin-prettier": "^3.1.3",
+        "eslint-plugin-promise": "^4.2.1",
+        "eslint-plugin-react": "^7.19.0",
+        "eslint-plugin-react-hooks": "^3.0.0",
+        "eslint-plugin-simple-import-sort": "^5.0.2",
+        "express": "^4.17.1",
+        "faker": "^4.1.0",
+        "nodemon": "^2.0.3",
+        "npm-run-all": "^4.1.5",
+        "pre-commit": "^1.2.2",
+        "prettier": "^2.0.5",
+        "prettier-plugin-package": "^1.0.0",
+        "react-cosmos": "^5.1.0",
+        "stylelint": "^13.3.3",
+        "stylelint-config-prettier": "^8.0.1",
+        "stylelint-config-recommended": "^3.0.0",
+        "stylelint-prettier": "^1.1.2",
+        "typescript-plugin-css-modules": "^2.2.0"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "pre-commit": [
+        "lint"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "pre-commit": [
-    "lint"
-  ],
-  "proxy": "http://localhost:8080"
+    "proxy": "http://localhost:8080",
+    "jest": {
+        "snapshotSerializers": [
+            "enzyme-to-json/serializer"
+        ],
+        "collectCoverageFrom": [
+            "src/**/*.{js,jsx,ts,tsx}",
+            "!src/**/*.test.{js,jsx,ts,tsx,tsx.snap}",
+            "!src/**/*.fixture.{js,jsx,ts,tsx}",
+            "!src/**/__snapshots__/**/*",
+            "!src/**/__mocks__/**/*",
+            "!src/**/index.ts",
+            "!src/*.{js,ts}"
+        ]
+    }
 }

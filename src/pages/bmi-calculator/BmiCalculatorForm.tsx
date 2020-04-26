@@ -13,12 +13,12 @@ import React, { FC, FormEventHandler, useCallback, useState } from 'react';
 import Loading from '../../components/loading/Loading';
 import useFieldProps from '../../hooks/use-field-props';
 import useForm from '../../hooks/use-form';
-import schema, { BmiFormData, isFormValid } from './form-schema';
+import schema, { isFormValid, RbcBmiFormData } from './form-schema';
 import { getBmi } from './service';
 
 const { height: heightSchema, weight: weightSchema } = schema;
 
-const defaultBmiData: BmiFormData = {
+const defaultBmiData: RbcBmiFormData = {
   height: null,
   weight: null,
 };
@@ -44,7 +44,7 @@ const BmiCalculatorForm: FC = () => {
       event.preventDefault();
 
       Promise.resolve()
-        .then(() => getBmi(formData as BmiFormData, setLoading))
+        .then(() => getBmi(formData as RbcBmiFormData, setLoading))
         .then(handleResponse)
         .catch(handleError)
         .finally(() => setFormData(defaultBmiData));

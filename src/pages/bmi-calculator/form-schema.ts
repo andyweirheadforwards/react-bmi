@@ -7,29 +7,29 @@ const maxHeight = 300;
 const minWeight = 5;
 const maxWeight = 600;
 
-export type AwFieldSettings = {
+export type RbcFieldSettings = {
   field: { name: string } & TextFieldProps;
   helperText: string;
   getErrorMessage: (value: string) => ReactNode | null;
 };
 
-export type FormSchema = {
-  [field: string]: AwFieldSettings;
+export type RbcFormSchema = {
+  [field: string]: RbcFieldSettings;
 };
 
-export type FormData = {
+export type RbcFormData = {
   [key: string]: string | null;
 };
-export interface BmiFormData extends FormData {
+export interface RbcBmiFormData extends RbcFormData {
   height: string | null;
   weight: string | null;
 }
 
-export function isFormValid(schema: FormSchema, formData: FormData) {
+export function isFormValid(schema: RbcFormSchema, formData: RbcFormData) {
   return !Object.keys(schema).find(key => schema[key].getErrorMessage(formData[key] || ''));
 }
 
-const schema: FormSchema = {
+const formSchema: RbcFormSchema = {
   height: {
     field: {
       label: 'Height?',
@@ -104,4 +104,4 @@ function getWeightError(value: string): ReactNode | null {
   return error;
 }
 
-export default schema;
+export default formSchema;
