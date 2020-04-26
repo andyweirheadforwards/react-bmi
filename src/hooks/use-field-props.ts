@@ -12,8 +12,10 @@ const useFieldProps = (
   const { name } = field;
   const [errorMessage, setErrorMessage] = useState<ReactNode | null>(null);
   const error = !!errorMessage;
-  const onChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value: changeValue } }) =>
+  const onChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value: changeValue } }) => {
+    error && setErrorMessage(getErrorMessage(changeValue));
     onValueChange(name, changeValue);
+  };
   const onBlur: FocusEventHandler<HTMLInputElement> = ({ target: { value: blurValue } }) =>
     setErrorMessage(getErrorMessage(blurValue));
 

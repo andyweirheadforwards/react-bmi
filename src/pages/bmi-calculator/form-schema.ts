@@ -1,4 +1,4 @@
-import { TextFieldProps } from '@material-ui/core';
+import { TextFieldProps } from '@material-ui/core/TextField/TextField';
 import { ReactNode } from 'react';
 
 const minHeight = 30;
@@ -57,7 +57,7 @@ const schema: FormSchema = {
         type: 'number',
       },
     },
-    helperText: 'Weight in cm.',
+    helperText: 'Weight in Kg.',
     getErrorMessage: getWeightError,
   },
 };
