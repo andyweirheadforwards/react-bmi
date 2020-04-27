@@ -2,12 +2,16 @@ import axios from 'axios';
 
 import { RbcBmiFormData } from './form-schema';
 
-export interface RbcBmiPostData {
+export type RbcBmiPostData = {
   height: number;
   weight: number;
-}
+};
 
-export function getBmi(formData: RbcBmiFormData, setLoading: (loading: boolean) => void) {
+export type RbcGetBmiResponse = {
+  bmi: number;
+};
+
+export function getBmi(formData: RbcBmiFormData, setLoading: (loading: boolean) => void): Promise<RbcGetBmiResponse> {
   const postData = getPostData(formData);
 
   setLoading(true);

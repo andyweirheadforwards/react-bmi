@@ -25,6 +25,11 @@ export interface RbcBmiFormData extends RbcFormData {
   weight: string | null;
 }
 
+export const defaultBmiData: RbcBmiFormData = {
+  height: null,
+  weight: null,
+};
+
 export function isFormValid(schema: RbcFormSchema, formData: RbcFormData) {
   return !Object.keys(schema).find(key => schema[key].getErrorMessage(formData[key] || ''));
 }

@@ -6,15 +6,10 @@ import RbcTextField from '../../components/forms/rbc-text-field';
 import Loading from '../../components/loading/Loading';
 import useFieldProps from '../../hooks/use-field-props';
 import useForm from '../../hooks/use-form';
-import schema, { isFormValid, RbcBmiFormData } from './form-schema';
-import { getBmi } from './service';
+import schema, { defaultBmiData, isFormValid, RbcBmiFormData } from './form-schema';
+import { getBmi, RbcGetBmiResponse } from './service';
 
 const { height: heightSchema, weight: weightSchema } = schema;
-
-const defaultBmiData: RbcBmiFormData = {
-  height: null,
-  weight: null,
-};
 
 const BmiCalculatorForm: FC = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
@@ -25,20 +20,20 @@ const BmiCalculatorForm: FC = () => {
   const heightProps = useFieldProps(heightSchema, height, setField) as OutlinedTextFieldProps;
   const weightProps = useFieldProps(weightSchema, weight, setField) as OutlinedTextFieldProps;
 
-  const handleResponse = useCallback(({ bmi }) => alert(`Your BMI is: ${bmi}`), []);
-  const handleError = useCallback(error => alert(error), []);
-
   const handleSubmit: FormEventHandler<HTMLFormElement> = useCallback(
     event => {
       event.preventDefault();
 
+      const handleResponse = ({ bmi }: RbcGetBmiResponse) => alert(`Your BMI is: ${bmi}`);
+      const handleError = (error: Error) => alert(error);
+
       Promise.resolve()
         .then(() => getBmi(formData as RbcBmiFormData, setLoading))
         .then(handleResponse)
-        .catch(handleError)
-        .finally(() => setFormData(defaultBmiData));
+        .then(() => setFormData(defaultBmiData))
+        .catch(handleError);
     },
-    [formData, setLoading, setFormData, handleResponse, handleError]
+    [formData, setLoading, setFormData]
   );
 
   const formCardProps: RbcFormCardProps = {
